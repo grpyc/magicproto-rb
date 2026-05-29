@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
     then registered through the stock protobuf DescriptorPool — making the resulting
     message classes indistinguishable from generated ones.
   DESC
-  spec.homepage = "https://github.com/sam/magicprotorb"
+  spec.homepage = "https://github.com/grpyc/magicproto-rb"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
