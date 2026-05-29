@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package broken;
+
+message Oops {
+  string name = 1   // <-- missing semicolon: deliberate syntax error
+}

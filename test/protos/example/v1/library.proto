@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package example.v1;
+
+import "example/v1/types.proto";
+
+message Book {
+  message Chapter {
+    string title = 1;
+    uint32 pages = 2;
+  }
+
+  string title = 1;
+  Author author = 2;
+  Genre genre = 3;
+  map<string, int32> word_counts = 4;
+  repeated Chapter chapters = 5;
+}

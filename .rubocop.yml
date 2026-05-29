@@ -1,0 +1,39 @@
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  SuggestExtensions: false
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Max: 120
+
+# These metrics flag a handful of small, linear methods (path resolution,
+# descriptor walking) that read more clearly whole than split for their own sake.
+Metrics/MethodLength:
+  Max: 20
+Metrics/AbcSize:
+  Max: 25
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Metrics/BlockLength:
+  Exclude:
+    - "test/**/*"
+    - "*.gemspec"
+
+# The entry file reopens module Magicprotorb around its require_relatives
+# (errors first, public API last); that is deliberate, not a smell.
+Style/OneClassPerFile:
+  Enabled: false
+
+# Behavior is documented inline throughout; the redundant per-module banner the
+# cop wants adds noise without information.
+Style/Documentation:
+  Enabled: false

@@ -1,0 +1,6 @@
+# Workspace root so `cargo metadata` (invoked by rb_sys from the gem root) can
+# discover the native extension crate. The actual crate lives in
+# ext/magicprotorb_native.
+[workspace]
+members = ["ext/magicprotorb_native"]
+resolver = "2"

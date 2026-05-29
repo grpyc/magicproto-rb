@@ -1,0 +1,29 @@
+module Magicprotorb
+  VERSION: String
+
+  class Error < StandardError
+  end
+
+  # Raised when the native compiler rejects a .proto.
+  class CompileError < Error
+  end
+
+  # Compiles greet/hello.proto and defines its message/enum constants.
+  # Equivalent to `require "magicprotorb/greet/hello_pb"`.
+  def self.import: (String proto) -> void
+
+  # As import, plus synthesizes the gRPC Service/Stub.
+  # Equivalent to `require "magicprotorb/greet/hello_services_pb"`.
+  def self.import_services: (String proto) -> void
+
+  # The include roots currently searched (MAGICPROTORB_PATH, then $LOAD_PATH).
+  def self.include_paths: () -> Array[String]
+
+  def self.normalize: (String proto) -> String
+
+  # The Rust extension's compiler entry point.
+  class Compiler
+    # Returns a serialized FileDescriptorSet (binary string).
+    def self._compile: (String proto_path, Array[String] include_dirs) -> String
+  end
+end

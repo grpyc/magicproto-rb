@@ -1,0 +1,22 @@
+[package]
+name = "magicprotorb_native"
+version = "0.1.0"
+edition = "2021"
+publish = false
+autobins = false
+
+# The compiled artifact is loaded by Ruby as `magicprotorb/magicprotorb_native`.
+# It deliberately does NOT end in `_pb`, so the require hook never claims it.
+[lib]
+name = "magicprotorb_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+# Ruby <-> Rust bindings.
+magnus = "0.7"
+# Pure-Rust protobuf *compiler* — the one thing the stock protobuf runtime
+# cannot do itself (turns .proto text into a FileDescriptorSet).
+protox = "0.9"
+# protox builds on prost's descriptor types; keep these in lockstep with it.
+prost = "0.14"
+prost-types = "0.14"

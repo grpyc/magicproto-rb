@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package example.v1;
+
+message Author {
+  string name = 1;
+}
+
+enum Genre {
+  GENRE_UNSPECIFIED = 0;
+  FICTION = 1;
+  NONFICTION = 2;
+}

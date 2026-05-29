@@ -1,0 +1,19 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+# Rust build artifacts
+/target/
+
+# Compiled native extension (built from ext/ via `rake compile`)
+/lib/magicprotorb/*.bundle
+/lib/magicprotorb/*.so
+/lib/magicprotorb/*.dll
+
+# Built gem artifacts
+*.gem
