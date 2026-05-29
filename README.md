@@ -67,6 +67,41 @@ MAGICPROTORB_PATH="$PWD" ruby my_script.rb
 ```
 
 
+## Reading and writing serialized data
+
+The imported classes are ordinary `google-protobuf` messages, so the stock
+`.encode` / `.decode` do the wire-format work — magicprotorb only supplies the
+class from the `.proto`. A round-trip:
+
+```ruby
+require "magicprotorb"
+
+$LOAD_PATH.unshift File.expand_path("~/Documents")  # include root holding greet/hello.proto
+
+require "magicprotorb/greet/hello_pb"  # canonical path: greet/hello.proto
+
+# Constant namespace mirrors the proto's `package greet;`
+req = Greet::HelloRequest.new(name: "world")
+puts "original: #{req.to_h}"
+
+# Serialize to the protobuf wire format (a binary string).
+bytes = Greet::HelloRequest.encode(req)
+
+# Store it — use binary mode so no newline/encoding translation corrupts it.
+path = File.expand_path("~/Documents/req.bin")
+File.binwrite(path, bytes)
+puts "wrote #{bytes.bytesize} bytes to #{path}"
+
+# Read it back and decode.
+loaded = Greet::HelloRequest.decode(File.binread(path))
+puts "loaded:   #{loaded.to_h}"
+puts "round-trips: #{loaded == req}"
+```
+
+`.decode` needs to know which message the bytes are — the wire format isn't
+self-describing, so call it on the matching class. For JSON payloads use
+`.decode_json` / `.encode_json` instead.
+
 ## Naming
 
 | require | compiles | gives you |
